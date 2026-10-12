@@ -1,26 +1,175 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Light theme palette — accents echo the cyan/orange of the hero shaders */
+  --color-ink: #0b1b2b;
+  --color-body: #475569;
+  --color-muted: #64748b;
+  --color-primary: #0e7490;
+  --color-primary-dark: #155e75;
+  --color-primary-soft: #ecfeff;
+  --color-accent: #ea580c;
+  --color-accent-soft: #fff7ed;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f6f9fb;
+  --color-line: #e2e8f0;
+
+  --shadow-card: 0 1px 2px rgba(11, 27, 43, 0.04), 0 8px 24px -12px rgba(11, 27, 43, 0.12);
+  --shadow-card-hover: 0 2px 4px rgba(11, 27, 43, 0.04), 0 22px 40px -18px rgba(11, 27, 43, 0.22);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-jakarta), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    @apply font-sans text-body bg-surface antialiased;
+  }
+
+  ::selection {
+    background-color: #a5f3fc;
+    color: var(--color-ink);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-20 md:py-28;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-primary text-xs font-semibold uppercase tracking-[0.14em];
+  }
+
+  .heading-display {
+    @apply font-display font-bold text-ink tracking-tight text-balance;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-primary rounded-full
+           shadow-sm transition-all duration-300 ease-out-expo
+           hover:bg-primary-dark hover:shadow-md hover:-translate-y-0.5
+           focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold text-ink bg-white rounded-full
+           border border-line transition-all duration-300 ease-out-expo
+           hover:border-primary hover:text-primary hover:-translate-y-0.5
+           focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl border border-line shadow-card;
+  }
+
+  .card-hover {
+    @apply transition-all duration-500 ease-out-expo hover:-translate-y-1 hover:shadow-card-hover hover:border-primary/30;
+  }
+
+  .icon-tile {
+    @apply flex items-center justify-center w-12 h-12 rounded-xl bg-primary-soft text-primary
+           transition-colors duration-300;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-line bg-white px-4 py-2.5 text-ink placeholder:text-muted/70
+           transition-shadow duration-200 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/15;
+  }
+
+  /* Soft dotted backdrop used behind alternate sections */
+  .bg-dots {
+    background-image: radial-gradient(circle at center, rgba(11, 27, 43, 0.05) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+}
+
+/* Scroll-triggered reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s var(--ease-out-expo),
+    transform 0.8s var(--ease-out-expo);
+  will-change: opacity, transform;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Slow drifting glow used in light call-to-action panels */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0) scale(1.06);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 9s ease-in-out infinite;
+}
+
+/* Marquee infinite scroll keyframes */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+  }
+}
+
+.animate-marquee {
+  animation: marquee linear infinite;
+}
+
+.animate-marquee-vertical {
+  animation: marquee-vertical linear infinite;
 }
