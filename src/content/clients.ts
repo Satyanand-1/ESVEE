@@ -12,7 +12,7 @@ export const clientsAndPartners: ClientPartner[] = [
     name: 'Volery',
     logo: '/clients/volery.png',
     category: 'Technology & Consulting',
-    description: 'Cloud technology and strategic digital solutions partner.'
+    description: 'Cloud technology and digital solutions company.'
   },
   {
     id: 'nfinity',
@@ -137,7 +137,7 @@ export const clientsAndPartners: ClientPartner[] = [
     id: 'chamber-commerce',
     name: 'US Chamber of Commerce',
     logo: '/images/chamber-commerce.png',
-    category: 'Institutional Partner',
+    category: 'Business Association',
     description: 'The world’s largest business organization representing companies of all sizes across America.'
   }
 ];

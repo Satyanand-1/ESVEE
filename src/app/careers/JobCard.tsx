@@ -2,8 +2,11 @@
 
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { MapPin, Briefcase, Building, ChevronDown } from 'lucide-react';
+import { MapPin, Briefcase, Building, CalendarDays, ChevronDown } from 'lucide-react';
 import type { JobListing } from '@/content/careers';
+
+// Dates are stored as YYYY-MM-DD; format in UTC so the day never shifts with the visitor's time zone.
+const postedDateFormat = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 
 function DetailList({ title, items }: { title: string; items: string[] }) {
   return (
@@ -36,6 +39,10 @@ export default function JobCard({ job }: { job: JobListing }) {
             <span className="flex items-center gap-1.5"><MapPin className="w-4 h-4 text-primary" /> {job.location}</span>
             <span className="flex items-center gap-1.5"><Briefcase className="w-4 h-4 text-primary" /> {job.type}</span>
             <span className="flex items-center gap-1.5"><Building className="w-4 h-4 text-primary" /> {job.department}</span>
+            <span className="flex items-center gap-1.5">
+              <CalendarDays className="w-4 h-4 text-primary" />
+              Posted <time dateTime={job.postedDate}>{postedDateFormat.format(new Date(job.postedDate))}</time>
+            </span>
           </div>
         </div>
         <div className="flex items-center gap-2 text-primary text-sm font-semibold shrink-0">

@@ -27,8 +27,8 @@ export function CinematicLogoCloud({
   clients,
   variant = "grid",
   className,
-  eyebrow = "Trusted by Forward-Thinking Organizations",
-  description = "Collaborating with leading enterprises, institutions, and industry associations across the globe.",
+  eyebrow = "Organizations We Have Worked With",
+  description = "Our experience includes client, technology, delivery, and business relationships across different industries.",
 }: CinematicLogoCloudProps) {
   const renderClient = (client: LogoCloudClient, size: "lg" | "sm" = "lg") => {
     if (client.logo) {

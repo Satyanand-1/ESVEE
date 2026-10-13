@@ -146,7 +146,7 @@ export default function Navigation() {
                 type="button"
                 className="px-5 py-2 rounded-full bg-white text-black font-medium text-xs transition-all duration-300 hover:bg-white/90 cursor-pointer h-8 flex items-center z-10"
               >
-                Discuss a Project
+                Discuss Your Need
               </button>
             </Link>
           </div>
@@ -190,7 +190,7 @@ export default function Navigation() {
                 className="block w-full text-center py-3 rounded-full bg-gradient-to-r from-cyan-500 to-orange-500 text-white font-medium text-sm shadow-lg"
                 onClick={closeMobileMenu}
               >
-                Discuss a Project
+                Discuss Your Need
               </Link>
             </div>
           </div>

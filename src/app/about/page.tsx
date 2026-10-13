@@ -1,16 +1,18 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import { company } from '@/content/company';
+import { capabilities } from '@/content/services';
 import RevealOnScroll from '@/components/ui/RevealOnScroll';
 import SectionHeader from '@/components/ui/SectionHeader';
 import ContactCTA from '@/components/ui/ContactCTA';
-import { MapPin, Target, Users, Cpu, Database, Network, LineChart, Check } from 'lucide-react';
+import { MapPin, Users, HeartHandshake, Check } from 'lucide-react';
 
 import PageHeaderHero from '@/components/ui/page-header-hero';
 
 export const metadata: Metadata = {
-  title: 'About Us',
-  description: 'Learn about Esvee Technologies, an IT consulting and technology services company.',
+  title: { absolute: 'About Esvee Technologies | Consulting and Workforce Solutions' },
+  description: 'Esvee Technologies Inc is a technology consulting and workforce solutions company headquartered in Chantilly, Virginia.',
 };
 
 const approach = [
@@ -19,17 +21,10 @@ const approach = [
   { title: 'Broad Capabilities', desc: 'From strategic consulting to implementation and support, we cover all bases.' },
 ];
 
-const technologies = [
-  { title: 'Event-Driven Architecture', icon: Network, desc: 'Responsive and scalable system design.' },
-  { title: 'Big Data', icon: Database, desc: 'Managing and analyzing massive datasets.' },
-  { title: 'IoT (Internet of Things)', icon: Cpu, desc: 'Connecting devices for smart operations.' },
-  { title: 'AI & Machine Learning', icon: LineChart, desc: 'Intelligent automation and insights.' },
-];
-
 const locations = [
-  { place: 'Virginia, USA', role: 'Headquarters', desc: 'Corporate strategy and central operations.' },
-  { place: 'Hyderabad, India', role: 'Partner Location', desc: 'Development and technology center.' },
+  { place: 'Chantilly, Virginia, USA', role: 'Headquarters', desc: 'Corporate strategy and central operations.' },
   { place: 'Lima, Peru', role: 'Regional Office', desc: 'Latin America operations and support.' },
+  { place: 'Hyderabad, India', role: 'Partner Office', desc: 'Development and technology center.' },
 ];
 
 export default function AboutPage() {
@@ -39,9 +34,9 @@ export default function AboutPage() {
       <PageHeaderHero
         badge="Who We Are"
         badgeIcon={<Users className="w-3.5 h-3.5 text-cyan-400" />}
-        title="About Esvee"
-        highlightTitle="Technologies"
-        description="An IT consulting and technology services company delivering comprehensive solutions across the full software development life cycle."
+        title="A practical partner for technology consulting and"
+        highlightTitle="delivery"
+        description="A technology consulting and workforce solutions company headquartered in Chantilly, Virginia."
         align="left"
       />
 
@@ -56,12 +51,12 @@ export default function AboutPage() {
                   Who We Are
                 </span>
                 <h2 className="heading-display text-3xl md:text-4xl leading-[1.15] mb-6">
-                  Full Life Cycle Management and IT Consultants
+                  Experienced people for important technology work
                 </h2>
                 <div className="space-y-4 text-lg leading-relaxed">
                   <p>{company.about}</p>
                   <p>
-                    Associated with <strong className="text-ink font-semibold">{company.partnerFull}</strong> ({company.partner}), we leverage international delivery capabilities across the Americas and Asia.
+                    We work with clients, implementation partners, prime vendors, and other technology organizations through flexible engagement models. Depending on the requirement, Esvee can provide an individual consultant, additional team capacity, or support for a defined technology initiative.
                   </p>
                 </div>
               </div>
@@ -85,18 +80,25 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Our Approach */}
+      {/* Company Philosophy and Approach */}
       <section className="section-padding bg-surface-alt border-y border-line">
         <div className="section-container">
           <RevealOnScroll>
-            <SectionHeader
-              label="Our Approach"
-              icon={<Target className="w-4 h-4" />}
-              title="Holistic View, Practical Solutions"
-              className="mb-14"
-            />
+            <div className="card p-8 sm:p-12 text-center max-w-4xl mx-auto">
+              <div className="mx-auto mb-6 flex items-center justify-center w-14 h-14 rounded-2xl bg-accent-soft text-accent">
+                <HeartHandshake className="w-7 h-7" />
+              </div>
+              <span className="eyebrow mb-4">Our Philosophy</span>
+              <h2 className="heading-display text-3xl md:text-4xl leading-[1.15] mb-5">
+                Staffing is a people business.
+              </h2>
+              <p className="text-lg leading-relaxed max-w-2xl mx-auto">
+                Behind every requirement is a business need, and behind every resume is a person. We take time to understand both. That means asking practical questions, communicating clearly, and focusing on fit beyond a list of keywords.
+              </p>
+            </div>
           </RevealOnScroll>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
             {approach.map((item, i) => (
               <RevealOnScroll key={item.title} delay={i * 100} className="h-full">
                 <div className="card card-hover h-full p-8">
@@ -117,37 +119,38 @@ export default function AboutPage() {
         <div className="section-container">
           <RevealOnScroll>
             <SectionHeader
-              label="Technology"
+              label="Where We Can Help"
               title="Technology Capabilities"
-              description="Leveraging modern technologies to build robust, scalable, and intelligent systems."
+              description="Our consultants and delivery teams support a broad range of technology environments."
               className="mb-14"
             />
           </RevealOnScroll>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {technologies.map((tech, i) => (
-              <RevealOnScroll key={tech.title} delay={i * 90} className="h-full">
-                <div className="card card-hover group h-full p-7">
-                  <div className="icon-tile mb-5 group-hover:bg-primary group-hover:text-white">
-                    <tech.icon className="w-6 h-6" />
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {capabilities.map((item, i) => (
+              <RevealOnScroll key={item.id} delay={i * 60} className="h-full">
+                <Link
+                  href={`/services#${item.id}`}
+                  className="card card-hover group flex flex-col items-center text-center h-full px-4 py-7 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                >
+                  <div className="icon-tile mb-4 group-hover:bg-primary group-hover:text-white">
+                    <item.icon className="w-6 h-6" />
                   </div>
-                  <h3 className="font-display text-lg font-bold text-ink mb-2">{tech.title}</h3>
-                  <p className="leading-relaxed">{tech.desc}</p>
-                </div>
+                  <h3 className="font-display text-base font-bold text-ink leading-snug">{item.shortTitle}</h3>
+                </Link>
               </RevealOnScroll>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Global Presence */}
+      {/* Locations */}
       <section className="section-padding bg-surface-alt border-t border-line">
         <div className="section-container">
           <RevealOnScroll>
             <SectionHeader
               label="Where We Work"
-              title="Global Presence"
-              description="Operating internationally to serve clients worldwide with a network of offices and partners."
+              title="Delivery and consulting support across the United States, Peru, and India"
               className="mb-14"
             />
           </RevealOnScroll>

@@ -3,11 +3,9 @@ export const company = {
   shortName: 'ETI',
   tagline: 'Your Desire! Our Passion!',
   description:
-    'We are a full life cycle management and Information Technology consulting company. Our competencies span across a wide range of platforms, tools, programming environments, and package-based solutions, from commercial and open-source vendors.',
+    'Esvee Technologies Inc provides technology consulting, workforce solutions, and delivery support across cloud, software engineering, data, cybersecurity, telecom, enterprise platforms, and SAP.',
   about:
-    'Esvee Technologies Inc (ETI) is an IT consulting and technology services company that provides end-to-end technology solutions to businesses worldwide. We design, build, deploy, and maintain applications for event-driven and big data businesses, leveraging technologies including the Internet of Things, Artificial Intelligence, and Machine Learning.',
-  partner: 'Sparc Group',
-  partnerFull: 'SPARC CYBERTECH',
+    'Esvee Technologies Inc is a technology consulting and workforce solutions company headquartered in Chantilly, Virginia. We help organizations access experienced technology professionals, strengthen project teams, and move important initiatives forward. Our capabilities span cloud, software engineering, data, cybersecurity, telecom, enterprise platforms, and SAP.',
   copyright: `© ${new Date().getFullYear()} Esvee Technologies Inc. All rights reserved.`,
   website: 'https://esveetech.com',
   logo: '/images/logo.svg',

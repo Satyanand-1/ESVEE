@@ -1,10 +1,10 @@
 "use client"
 
-import React, { useEffect, useRef } from "react"
+import React, { useRef } from "react"
 import Link from "next/link"
 import { MeshGradient, PulsingBorder } from "@paper-design/shaders-react"
 import { motion } from "framer-motion"
-import { ArrowRight, ChevronRight, Sparkles, Zap, Shield, Cpu, Database, Globe2 } from "lucide-react"
+import { ArrowRight, Zap } from "lucide-react"
 
 export default function ShaderHero() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -87,7 +87,7 @@ export default function ShaderHero() {
 
       {/* Main Content Area */}
       <div className="relative z-20 container mx-auto px-6 md:px-12 flex flex-col justify-end min-h-[75vh]">
-        <div className="max-w-3xl text-left">
+        <div className="max-w-4xl text-left">
           
           {/* Badge Pill with Glass Effect */}
           <motion.div
@@ -100,21 +100,21 @@ export default function ShaderHero() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="absolute top-0 left-1 right-1 h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent rounded-full" />
-            <span className="text-white/90 text-sm font-medium relative z-10 tracking-wide flex items-center gap-2">
+            <span className="text-white/90 text-xs sm:text-sm font-medium relative z-10 tracking-wider uppercase flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-              Enterprise IT Consulting &amp; SAP Solutions
+              Technology Consulting and Workforce Solutions
             </span>
           </motion.div>
 
           {/* Headline with Animated Shader Gradient Text */}
           <motion.h1
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-none tracking-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.05] tracking-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <motion.span
-              className="block font-light text-white/90 text-4xl sm:text-5xl md:text-6xl mb-2 tracking-wider"
+              className="block font-light text-white/90 text-3xl sm:text-4xl md:text-5xl mb-2 tracking-wider"
               style={{
                 background: "linear-gradient(135deg, #ffffff 0%, #06b6d4 30%, #f97316 70%, #ffffff 100%)",
                 WebkitBackgroundClip: "text",
@@ -131,24 +131,24 @@ export default function ShaderHero() {
                 ease: "linear",
               }}
             >
-              Technology That Moves
+              The right
             </motion.span>
             <span className="block font-black text-white drop-shadow-2xl">
-              Your Business
+              technology expertise,
             </span>
-            <span className="block font-light text-white/90 italic tracking-wide">
-              Forward.
+            <span className="block font-light text-white/90 italic tracking-wide text-3xl sm:text-4xl md:text-5xl mt-2">
+              when your business needs it.
             </span>
           </motion.h1>
 
           {/* Subheading */}
           <motion.p
-            className="text-base sm:text-lg md:text-xl font-light text-white/80 mb-8 leading-relaxed max-w-2xl drop-shadow"
+            className="text-base sm:text-lg md:text-xl font-light text-white/80 mb-8 leading-relaxed max-w-3xl drop-shadow"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
           >
-            From enterprise applications and SAP S/4HANA solutions to modern web development, staffing, and technology consulting — we help organizations turn complex challenges into practical technology outcomes.
+            Esvee helps organizations move technology initiatives forward with experienced consultants, flexible delivery teams, and practical technology solutions. Whether you need one specialist, additional project capacity, or support delivering a complete initiative, we begin by understanding the work and finding the right way to support it.
           </motion.p>
 
           {/* Action CTA Buttons */}
@@ -159,11 +159,11 @@ export default function ShaderHero() {
             transition={{ duration: 0.6, delay: 1.0 }}
           >
             <Link
-              href="/contact"
+              href="/contact?type=consultant"
               className="px-8 py-3.5 rounded-full bg-gradient-to-r from-cyan-500 to-orange-500 hover:from-cyan-400 hover:to-orange-400 text-white font-semibold text-sm transition-all duration-300 shadow-lg hover:shadow-cyan-500/30 cursor-pointer flex items-center gap-2 group"
             >
               <Zap className="w-4 h-4 fill-current text-white" />
-              Discuss a Project
+              Discuss Your Consulting Need
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
             
@@ -171,7 +171,7 @@ export default function ShaderHero() {
               href="/services"
               className="px-8 py-3.5 rounded-full bg-transparent border-2 border-white/30 text-white font-medium text-sm transition-all duration-300 hover:bg-white/10 hover:border-cyan-400/50 hover:text-cyan-100 cursor-pointer backdrop-blur-sm"
             >
-              Explore Our Services
+              Explore Our Capabilities
             </Link>
           </motion.div>
         </div>
@@ -219,7 +219,7 @@ export default function ShaderHero() {
             </defs>
             <text className="text-[10px] fill-white/80 font-medium tracking-widest uppercase">
               <textPath href="#circle" startOffset="0%">
-                • ESVEE TECHNOLOGIES • ENTERPRISE CONSULTING • GLOBAL DELIVERY •
+                • ESVEE TECHNOLOGIES • CONSULTING • WORKFORCE SOLUTIONS •
               </textPath>
             </text>
           </motion.svg>

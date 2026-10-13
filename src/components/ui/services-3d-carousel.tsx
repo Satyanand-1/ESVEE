@@ -11,10 +11,11 @@ import {
   Pause,
   Play
 } from "lucide-react";
-import { services } from "@/content/services";
+import { coreServices as services } from "@/content/services";
 
 export function Services3DCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
+  // Only the Pause button stops the rotation, so the button always reflects what the carousel is doing.
   const [isPaused, setIsPaused] = useState(false);
   const total = services.length;
   const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -32,6 +33,11 @@ export function Services3DCarousel() {
     setActiveIndex((index + total) % total);
   }, [total]);
 
+  // Start paused for visitors who ask for reduced motion.
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) setIsPaused(true);
+  }, []);
+
   useEffect(() => {
     if (isPaused) return;
     timerRef.current = setInterval(() => {
@@ -46,8 +52,6 @@ export function Services3DCarousel() {
   return (
     <section 
       className="relative w-full bg-surface-alt text-ink border-y border-line py-20 md:py-24 select-none overflow-hidden"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
     >
       {/* Subtle background ambient texture */}
       <div className="absolute inset-0 pointer-events-none">
@@ -63,7 +67,7 @@ export function Services3DCarousel() {
             Our Core Services
           </h2>
           <p className="text-lg text-body max-w-xl mx-auto leading-relaxed">
-            Explore our specialized enterprise solutions and technology capabilities.
+            Consulting and workforce solutions first, backed by technical capability where the work needs it.
           </p>
         </div>
 
@@ -138,14 +142,14 @@ export function Services3DCarousel() {
                           {service.title}
                         </h3>
                         <p className="text-sm text-body line-clamp-2 leading-relaxed">
-                          {service.shortDescription}
+                          {service.description}
                         </p>
                       </div>
 
                       {/* Card Action CTA */}
                       <div className="pt-2">
                         <Link
-                          href={`/services#${service.id}`}
+                          href={service.href}
                           onClick={(e) => e.stopPropagation()}
                           className={`inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-full transition-all duration-300 ${
                             isCenter
@@ -200,10 +204,11 @@ export function Services3DCarousel() {
 
             <button
               onClick={() => setIsPaused((prev) => !prev)}
-              aria-label={isPaused ? "Play carousel" : "Pause carousel"}
-              className="ml-2 text-muted hover:text-primary transition-colors"
+              aria-pressed={isPaused}
+              className="ml-2 inline-flex items-center gap-1.5 rounded-full border border-line px-3 py-1 text-xs font-semibold text-ink transition-colors hover:border-primary hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               {isPaused ? <Play className="w-3 h-3 fill-current" /> : <Pause className="w-3 h-3 fill-current" />}
+              {isPaused ? "Play" : "Pause"}
             </button>
           </div>
 

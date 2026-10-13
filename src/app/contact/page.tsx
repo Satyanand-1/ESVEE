@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { offices } from '@/content/company';
+import { DEFAULT_INQUIRY, isInquiryKey } from '@/content/forms';
 import RevealOnScroll from '@/components/ui/RevealOnScroll';
 import ContactForm from './ContactForm';
 import { MapPin, Mail, Phone } from 'lucide-react';
@@ -7,20 +8,28 @@ import { MapPin, Mail, Phone } from 'lucide-react';
 import PageHeaderHero from '@/components/ui/page-header-hero';
 
 export const metadata: Metadata = {
-  title: 'Contact Us',
-  description: 'Get in touch with Esvee Technologies',
+  title: { absolute: 'Contact Esvee | Consulting Staffing and Project Support' },
+  description: 'Whether you need a technology consultant, additional project capacity, a delivery partner, or help with a technology initiative, share a few details and our team will follow up.',
 };
 
-export default function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  // Links such as /contact?type=consultant preselect the matching inquiry type.
+  const { type } = await searchParams;
+  const initialType = isInquiryKey(type) ? type : DEFAULT_INQUIRY;
+
   return (
     <div className="flex flex-col">
       {/* Animated Shader Hero Section */}
       <PageHeaderHero
-        badge="Connect With Us"
+        badge="Start a Conversation"
         badgeIcon={<Mail className="w-3.5 h-3.5 text-cyan-400" />}
-        title="Get in"
-        highlightTitle="Touch"
-        description="We'd love to hear from you. Reach out with any questions, request an architectural assessment, or discuss your next enterprise technology initiative."
+        title="Tell us what you"
+        highlightTitle="need"
+        description="Whether you need a technology consultant, additional project capacity, a delivery partner, or help with a technology initiative, share a few details and our team will follow up."
         align="center"
       />
 
@@ -31,7 +40,7 @@ export default function ContactPage() {
           <RevealOnScroll>
             <span className="eyebrow mb-3">Write to Us</span>
             <h2 className="heading-display text-2xl md:text-3xl mb-6">Send us a Message</h2>
-            <ContactForm />
+            <ContactForm key={initialType} initialType={initialType} />
           </RevealOnScroll>
 
           {/* Right Column - Offices */}

@@ -15,16 +15,16 @@ export default function ContactCTA() {
             <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
               <div className="max-w-xl">
                 <h2 className="heading-display text-2xl sm:text-3xl md:text-4xl leading-tight mb-3">
-                  Have a technology challenge to solve?
+                  Need additional technology expertise?
                 </h2>
                 <p className="text-body text-base sm:text-lg leading-relaxed">
-                  Tell us what your organization needs. Let&apos;s explore the right technology and delivery approach together.
+                  Tell us about the requirement, project, or delivery challenge. We will discuss the skills, engagement model, and next steps that make sense for your organization.
                 </p>
               </div>
 
               <div className="shrink-0">
                 <Link href="/contact" className="btn-primary group w-full md:w-auto px-7 py-3.5">
-                  Contact Our Team
+                  Talk to Our Team
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </div>

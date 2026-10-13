@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { company } from '@/content/company';
+import { capabilities } from '@/content/services';
 import { ContactCTA } from '@/components/ContactCTA';
 import { RevealOnScroll } from '@/components/RevealOnScroll';
 import SectionHeader from '@/components/ui/SectionHeader';
@@ -11,17 +12,15 @@ import { Services3DCarousel } from '@/components/ui/services-3d-carousel';
 import {
   ArrowRight,
   Building2,
-  Database,
-  Cpu,
-  Layout,
-  Cloud,
-  Layers,
   Globe2,
   Users,
-  Briefcase,
-  TrendingUp,
-  Award,
-  ShieldCheck,
+  UserCheck,
+  UsersRound,
+  Workflow,
+  SearchCheck,
+  BadgeCheck,
+  SlidersHorizontal,
+  MessagesSquare,
   HeartPulse,
   Users2,
   HeadphonesIcon,
@@ -32,14 +31,32 @@ import {
 import { clientsAndPartners } from '@/content/clients';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Esvee Technologies Inc | IT Consulting & Technology Services' },
-  description: 'From enterprise applications and SAP solutions to modern web development, staffing, and technology consulting.',
+  title: { absolute: 'Esvee Technologies | Technology Consulting and Workforce Solutions' },
+  description: 'Esvee helps organizations move technology initiatives forward with experienced consultants, flexible delivery teams, and practical technology solutions.',
 };
 
 const clientBrands = clientsAndPartners.map((c) => ({
   name: c.name,
   logo: c.logo,
 }));
+
+const supportModels = [
+  {
+    title: 'Technology Consultants',
+    icon: UserCheck,
+    desc: 'Experienced professionals who can join your team and contribute to specific technology initiatives.',
+  },
+  {
+    title: 'Project and Team Augmentation',
+    icon: UsersRound,
+    desc: 'Flexible support when you need additional skills, delivery capacity, or an extended project team.',
+  },
+  {
+    title: 'Technology Consulting and Delivery',
+    icon: Workflow,
+    desc: 'Practical support from planning and architecture through implementation, testing, and ongoing improvement.',
+  },
+];
 
 const industries = [
   { name: 'Healthcare', icon: HeartPulse },
@@ -49,20 +66,27 @@ const industries = [
   { name: 'Insurance', icon: Shield },
 ];
 
-const capabilities = [
-  { title: 'Enterprise Applications', icon: Database, desc: 'Custom business applications designed for scale, security, and seamless workflow integration.' },
-  { title: 'Data & Integration', icon: Layers, desc: 'Robust data pipelines, API integrations, and ETL processes that unify your business systems.' },
-  { title: 'AI & Machine Learning', icon: Cpu, desc: 'Intelligent algorithms and models that extract insights and automate complex decisions.' },
-  { title: 'Web & Application Engineering', icon: Layout, desc: 'Modern, responsive, and accessible user interfaces paired with powerful backend systems.' },
-  { title: 'Cloud & Infrastructure', icon: Cloud, desc: 'Scalable cloud architectures, DevOps practices, and secure infrastructure deployment.' },
-  { title: 'Enterprise Platforms & SAP', icon: Briefcase, desc: 'Implementation, customization, and support for SAP and other major enterprise platforms.' },
-];
-
 const reasons = [
-  { title: 'Broad Technical Capabilities', icon: ShieldCheck, desc: 'Deep expertise across modern tech stacks and legacy systems.' },
-  { title: 'Consulting Expertise', icon: Award, desc: 'Strategic guidance that aligns technology with business objectives.' },
-  { title: 'Flexible Engagement', icon: TrendingUp, desc: 'Agile models that adapt to your project size, timeline, and budget.' },
-  { title: 'International Presence', icon: Globe2, desc: 'Delivery teams across the Americas and Asia, close to where you operate.' },
+  {
+    title: 'Requirement Understanding',
+    icon: SearchCheck,
+    desc: 'We take time to understand the work, environment, expectations, and practical constraints before presenting a consultant or delivery approach.',
+  },
+  {
+    title: 'Relevant Professionals',
+    icon: BadgeCheck,
+    desc: 'We focus on people whose experience aligns with the actual requirement, not only the keywords in a job description.',
+  },
+  {
+    title: 'Flexible Engagement',
+    icon: SlidersHorizontal,
+    desc: 'Engagements can support an individual requirement, an extended team, or a defined technology initiative.',
+  },
+  {
+    title: 'Dependable Communication',
+    icon: MessagesSquare,
+    desc: 'Clients and partners receive clear updates, realistic expectations, and consistent follow-through throughout the engagement.',
+  },
 ];
 
 export default function HomePage() {
@@ -71,8 +95,36 @@ export default function HomePage() {
       {/* A) MAIN SHADER HERO SECTION (Mesh Gradient & Dynamic Interactive Shaders) */}
       <ShaderHero />
 
-      {/* B) COMPANY INTRO */}
+      {/* B) HOW WE SUPPORT CLIENTS */}
       <section className="section-padding bg-white">
+        <div className="section-container">
+          <RevealOnScroll>
+            <SectionHeader
+              label="How We Support Clients"
+              title="Flexible support for real technology needs"
+              description="Some clients need one experienced consultant. Others need additional capacity across a project or support delivering an initiative from planning through implementation. Esvee adapts the engagement to the work."
+              className="mb-14"
+            />
+          </RevealOnScroll>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {supportModels.map((item, i) => (
+              <RevealOnScroll key={item.title} delay={i * 100} className="h-full">
+                <div className="card card-hover group h-full p-8">
+                  <div className="icon-tile mb-5 group-hover:bg-primary group-hover:text-white">
+                    <item.icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-display text-xl font-bold text-ink mb-2">{item.title}</h3>
+                  <p className="leading-relaxed">{item.desc}</p>
+                </div>
+              </RevealOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* C) COMPANY INTRO */}
+      <section className="section-padding bg-white border-t border-line">
         <div className="section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <RevealOnScroll>
@@ -82,19 +134,15 @@ export default function HomePage() {
                   About {company.name}
                 </span>
                 <h2 className="heading-display text-3xl md:text-4xl lg:text-[2.75rem] leading-[1.15] mb-6">
-                  Empowering Modern Enterprises with Scalable Solutions
+                  Technology work succeeds when the right people understand the goal
                 </h2>
                 <p className="text-lg leading-relaxed mb-8">
-                  Esvee Technologies Inc is an IT consulting and technology services company associated with Sparc Group. We partner with businesses to navigate complex technological landscapes, delivering tailored solutions that drive efficiency, growth, and innovation across diverse industries.
+                  Esvee Technologies Inc is a technology consulting and workforce solutions company based in Chantilly, Virginia. We support organizations with experienced consultants, flexible delivery teams, and practical technology services across the project lifecycle. Our work begins with the requirement, the working environment, and the outcome the client needs.
                 </p>
-                <div className="flex flex-wrap items-center gap-3 mb-8">
-                  <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-soft text-primary-dark text-sm font-medium">
-                    <ShieldCheck className="w-4 h-4" /> Full Life Cycle Delivery
-                  </span>
-                  <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-soft text-accent text-sm font-medium">
-                    <Globe2 className="w-4 h-4" /> Teams in USA, Peru &amp; India
-                  </span>
-                </div>
+                <p className="flex items-start gap-2.5 text-sm font-medium text-primary-dark mb-8">
+                  <Globe2 className="w-5 h-5 flex-shrink-0" />
+                  Delivery and consulting support across the United States, Peru, and India
+                </p>
                 <Link href="/about" className="btn-secondary group">
                   More About Us
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -119,17 +167,46 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* C) SERVICES 3D SCROLL PERSPECTIVE CAROUSEL */}
+      {/* D) CORE SERVICES CAROUSEL */}
       <Services3DCarousel />
 
-      {/* D) INDUSTRIES */}
-      <section className="py-20 bg-white">
+      {/* E) TECHNOLOGY CAPABILITIES */}
+      <section className="section-padding bg-white">
+        <div className="section-container">
+          <RevealOnScroll>
+            <SectionHeader
+              label="Where We Can Help"
+              title="Technology Capabilities"
+              description="Our consultants and delivery teams support a broad range of technology environments. We focus on understanding the requirement and bringing together the skills needed for the work."
+              className="mb-14"
+            />
+          </RevealOnScroll>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {capabilities.map((item, i) => (
+              <RevealOnScroll key={item.id} delay={i * 60} className="h-full">
+                <Link
+                  href={`/services#${item.id}`}
+                  className="card card-hover group flex flex-col items-center text-center h-full px-4 py-7 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                >
+                  <div className="icon-tile mb-4 group-hover:bg-primary group-hover:text-white">
+                    <item.icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-display text-base font-bold text-ink leading-snug">{item.shortTitle}</h3>
+                </Link>
+              </RevealOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* F) INDUSTRIES */}
+      <section className="py-20 bg-surface-alt border-y border-line">
         <div className="section-container">
           <RevealOnScroll>
             <SectionHeader
               label="Industries"
               title="Industries We Serve"
-              description="Domain experience that shortens the path from requirement to working software."
               className="mb-10"
             />
           </RevealOnScroll>
@@ -145,42 +222,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* E) TECHNOLOGY CAPABILITIES */}
-      <section className="section-padding bg-surface-alt border-y border-line">
-        <div className="section-container">
-          <RevealOnScroll>
-            <SectionHeader
-              label="What We Build"
-              title="Technology Capabilities"
-              description="Our team works across a diverse technology stack to deliver robust, scalable solutions."
-              className="mb-14"
-            />
-          </RevealOnScroll>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {capabilities.map((item, i) => (
-              <RevealOnScroll key={item.title} delay={(i % 3) * 90} className="h-full">
-                <div className="card card-hover group h-full p-7">
-                  <div className="icon-tile mb-5 group-hover:bg-primary group-hover:text-white">
-                    <item.icon className="w-6 h-6" />
-                  </div>
-                  <h3 className="font-display text-xl font-bold text-ink mb-2">{item.title}</h3>
-                  <p className="leading-relaxed">{item.desc}</p>
-                </div>
-              </RevealOnScroll>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* F) WHY WORK WITH US */}
+      {/* G) WHY ESVEE */}
       <section className="section-padding bg-white">
         <div className="section-container">
           <RevealOnScroll>
             <SectionHeader
               label="Why Esvee"
               title="Why Work With Us"
-              description="What sets Esvee Technologies apart as a trusted partner."
               className="mb-14"
             />
           </RevealOnScroll>
@@ -193,7 +241,7 @@ export default function HomePage() {
                     <item.icon className="w-8 h-8" />
                   </div>
                   <h3 className="font-display text-lg font-bold text-ink mb-2">{item.title}</h3>
-                  <p className="leading-relaxed">{item.desc}</p>
+                  <p className="text-sm leading-relaxed">{item.desc}</p>
                 </div>
               </RevealOnScroll>
             ))}
@@ -201,14 +249,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* G) CLIENT REFERENCE - CINEMATIC LOGO CLOUD */}
+      {/* H) CLIENT REFERENCE - CINEMATIC LOGO CLOUD */}
       <section className="py-20 bg-[#f8fafc] border-y border-[#e2e8f0]">
         <div className="container mx-auto px-4 md:px-6">
           <CinematicLogoCloud
             clients={clientBrands}
             variant="grid"
-            eyebrow="Trusted by Forward-Thinking Organizations"
-            description="Collaborating with leading enterprises, institutions, and industry associations across the globe."
+            eyebrow="Organizations We Have Worked With"
+            description="Our experience includes client, technology, delivery, and business relationships across different industries."
           />
 
           {/* Compact, well-proportioned CTA card */}
@@ -228,7 +276,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* H) CAREERS PREVIEW */}
+      {/* I) CAREERS PREVIEW */}
       <section className="pt-20 bg-white">
         <div className="section-container max-w-6xl">
           <RevealOnScroll>
@@ -246,13 +294,13 @@ export default function HomePage() {
                 <span className="eyebrow mb-3">
                   <Users className="w-4 h-4" /> Careers
                 </span>
-                <h2 className="heading-display text-2xl sm:text-3xl mb-3">Join Our Growing Team</h2>
+                <h2 className="heading-display text-2xl sm:text-3xl mb-3">Build your next opportunity with Esvee</h2>
                 <p className="leading-relaxed mb-6">
-                  We&apos;re always looking for talented technologists and consultants to help us build enterprise software that works.
+                  Esvee works with technology professionals across consulting assignments, project teams, and client opportunities.
                 </p>
                 <div>
                   <Link href="/careers" className="btn-secondary group">
-                    View Open Positions
+                    View Opportunities
                     <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </Link>
                 </div>
@@ -262,7 +310,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* I) CONTACT CTA */}
+      {/* J) CONTACT CTA */}
       <ContactCTA />
     </div>
   );

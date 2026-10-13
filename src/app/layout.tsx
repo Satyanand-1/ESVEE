@@ -10,13 +10,13 @@ const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-jakart
 export const metadata: Metadata = {
   metadataBase: new URL('https://esveetech.com'),
   title: {
-    template: 'Esvee Technologies Inc | %s',
-    default: 'Esvee Technologies Inc | IT Consulting & Technology Services',
+    template: '%s | Esvee',
+    default: 'Esvee Technologies | Technology Consulting and Workforce Solutions',
   },
-  description: 'Esvee Technologies Inc helps organizations turn business challenges into practical technology outcomes through enterprise applications, SAP solutions, and modern web development.',
+  description: 'Esvee Technologies Inc provides technology consulting, workforce solutions, and delivery support across cloud, software engineering, data, cybersecurity, telecom, enterprise platforms, and SAP.',
   openGraph: {
-    title: 'Esvee Technologies Inc | IT Consulting & Technology Services',
-    description: 'Esvee Technologies Inc helps organizations turn business challenges into practical technology outcomes.',
+    title: 'Esvee Technologies | Technology Consulting and Workforce Solutions',
+    description: 'Experienced consultants, flexible delivery teams, and practical technology solutions.',
     url: 'https://esveetech.com',
     siteName: 'Esvee Technologies Inc',
     locale: 'en_US',

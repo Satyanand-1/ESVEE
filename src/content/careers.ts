@@ -122,7 +122,7 @@ export const careersBenefits = [
   {
     title: 'Technical Growth',
     description:
-      'Access cutting-edge technologies including SAP, AI/ML, big data, and modern web platforms.',
+      'Work across cloud, software engineering, data, cybersecurity, telecom, and SAP environments.',
   },
   {
     title: 'Collaborative Culture',
